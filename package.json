@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "job search webapp built using mern stack",
   "main": "app.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -20,5 +21,9 @@
   "bugs": {
     "url": "https://github.com/sudomaaz/robjobs/issues"
   },
-  "homepage": "https://github.com/sudomaaz/robjobs#readme"
+  "homepage": "https://github.com/sudomaaz/robjobs#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1"
+  }
 }
