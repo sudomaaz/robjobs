@@ -1,7 +1,20 @@
-{
-  "title": "NodeJs developer required",
-  "description": "nodejs developer required to work on a mer stacl project",
-  "category": "Information Technology",
-  "experience": "Fresher",
-  "ctcMin": "2L"
-}
+[
+  {
+    "title": "NodeJs developer required",
+    "description": "nodejs developer required to work on a mean stack project",
+    "category": "Information Technology",
+    "experience": "Fresher",
+    "ctcMin": "2L",
+    "ctcMax": "5L",
+    "location": "Pune"
+  },
+  {
+    "title": "ReactJs developer required",
+    "description": "reactjs developer required to work on a mern stack project",
+    "category": "Information Technology",
+    "experience": "1 year - 2 years",
+    "ctcMin": "6L",
+    "ctcMax": "10L",
+    "location": "Bangalore"
+  }
+]

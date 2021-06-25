@@ -7,7 +7,8 @@
   "scripts": {
     "start": "node backend/app.js",
     "dev": "nodemon backend/app.js",
-    "prod": "SET NODE_ENV=production & nodemon backend/app.js"
+    "prod": "SET NODE_ENV=production& nodemon backend/app.js",
+    "job:seeder": "node backend/data/seeder.js -j"
   },
   "repository": {
     "type": "git",

@@ -11,6 +11,7 @@ export const connectDB = () => {
       console.log(
         `Database connection successfull.Host: ${conn.connection.host}`
       );
+      return conn;
     })
     .catch((err) => {
       console.log(`Unable to connect to database.Error: ${err.message}`);
