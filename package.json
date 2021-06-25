@@ -1,0 +1,24 @@
+{
+  "name": "domaincer",
+  "version": "1.0.0",
+  "description": "job search webapp built using mern stack",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sudomaaz/robjobs.git"
+  },
+  "keywords": [
+    "jobs",
+    "search",
+    "career"
+  ],
+  "author": "Mohammad Maaz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sudomaaz/robjobs/issues"
+  },
+  "homepage": "https://github.com/sudomaaz/robjobs#readme"
+}
