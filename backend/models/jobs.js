@@ -1,6 +1,11 @@
 import mongoose from "mongoose";
 
 const jobSchema = new mongoose.Schema({
+  company: {
+    type: String,
+    trim: true,
+    required: [true, "Please enter company name"],
+  },
   title: {
     type: String,
     trim: true,
@@ -35,12 +40,12 @@ const jobSchema = new mongoose.Schema({
     },
   },
   ctcMin: {
-    type: String,
+    type: Number,
     required: [true, "Please enter a minimum ctc"],
     trim: true,
   },
   ctcMax: {
-    type: String,
+    type: Number,
     required: [true, "Please enter a maximum ctc"],
     trim: true,
   },

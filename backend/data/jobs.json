@@ -1,20 +1,32 @@
 [
   {
+    "company": "Google LLC",
     "title": "NodeJs developer required",
     "description": "nodejs developer required to work on a mean stack project",
     "category": "Information Technology",
     "experience": "Fresher",
-    "ctcMin": "2L",
-    "ctcMax": "5L",
+    "ctcMin": 2,
+    "ctcMax": 5,
     "location": "Pune"
   },
   {
+    "company": "Facebook LLC",
     "title": "ReactJs developer required",
     "description": "reactjs developer required to work on a mern stack project",
     "category": "Information Technology",
     "experience": "1 year - 2 years",
-    "ctcMin": "6L",
-    "ctcMax": "10L",
+    "ctcMin": 6,
+    "ctcMax": 10,
     "location": "Bangalore"
+  },
+  {
+    "company": "Amazon LLC",
+    "title": "ReactJs developer required",
+    "description": "reactjs developer required to work on a mern stack project",
+    "category": "Information Technology",
+    "experience": "5+ years",
+    "ctcMin": 15,
+    "ctcMax": 20,
+    "location": "Hyderabad"
   }
 ]

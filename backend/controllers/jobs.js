@@ -1,9 +1,14 @@
 import jobModel from "../models/jobs.js";
+import apiFeatures from "../utils/apiFeatures.js";
 
 // fetch all jobs => GET /api/v1/jobs
 export const allJobs = async (req, res, next) => {
-  const jobs = await jobModel.find();
-  res.status(200).send({
+  const api = new apiFeatures(jobModel.find(), req.query)
+    .search()
+    .filter()
+    .sort();
+  const jobs = await api.query;
+  res.status(200).json({
     success: true,
     message: "This route displays all jobs",
     data: jobs,
@@ -52,7 +57,7 @@ export const deleteJob = async (req, res, next) => {
   let job = await jobModel.findById(req.params.id);
   if (!job) return;
   await job.remove();
-  res.status(200).send({
+  res.status(200).json({
     success: true,
     message: "This job has been deleted successfully",
     data: null,
