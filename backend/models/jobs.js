@@ -36,11 +36,19 @@ const jobSchema = new mongoose.Schema({
   },
   ctcMin: {
     type: String,
+    required: [true, "Please enter a minimum ctc"],
     trim: true,
-    default: "As per industry standards",
   },
-  ctcMax: String,
-  location: String,
+  ctcMax: {
+    type: String,
+    required: [true, "Please enter a maximum ctc"],
+    trim: true,
+  },
+  location: {
+    type: String,
+    required: [true, "Please enter job location"],
+    trim: true,
+  },
   User: {
     type: [Object],
     select: false,
