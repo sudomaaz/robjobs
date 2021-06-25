@@ -30,7 +30,7 @@ const jobSchema = new mongoose.Schema({
     type: String,
     required: true,
     enum: {
-      values: ["Fresher", "1 year - 2 years", "2 years - 5 years", "5 years+"],
+      values: ["Fresher", "1 year - 2 years", "2 years - 5 years", "5+ years"],
       message: "Please select a valid option for experience level",
     },
   },
