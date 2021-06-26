@@ -6,6 +6,13 @@ const errorMiddleware = (err, req, res, next) => {
 
   // if production then do not send error stack
   if (process.env.NODE_ENV === "production") {
+    if (err.name === "CastError") {
+      err.message = "Resource not found error.Please try again";
+      err.statusCode = 404;
+    } else if (err.name === "ValidationError") {
+      const message = Object.values(err.errors).map((e) => e.message);
+      err.message = message;
+    }
     res.status(statusCode).json({
       success: false,
       error: err.message,
@@ -13,7 +20,9 @@ const errorMiddleware = (err, req, res, next) => {
   } else {
     res.status(statusCode).json({
       success: false,
-      error: err.stack,
+      error: err,
+      errorMsg: err.message,
+      errorStack: err.stack,
     });
   }
 };
