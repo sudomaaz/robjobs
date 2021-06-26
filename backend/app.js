@@ -24,7 +24,7 @@ app.use("/api/v1", router);
 app.all("*", (req, res, next) => {
   res.status(404).json({
     success: false,
-    message: "Resource not found 404",
+    message: "404 Resource not found",
   });
 });
 
