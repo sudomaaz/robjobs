@@ -20,8 +20,16 @@ app.use(express.urlencoded({ extended: true }));
 // use pre-defined routes for every API request
 app.use("/api/v1", router);
 
+// handle unhandled routes
+app.all("*", (req, res, next) => {
+  res.status(404).json({
+    success: false,
+    message: "Resource not found 404",
+  });
+});
+
 // apply error handle middleware
-app.use("/api/v1", errorMiddleware);
+app.use(errorMiddleware);
 
 // get server port from env
 const PORT = process.env.PORT || 5000;

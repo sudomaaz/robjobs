@@ -32,7 +32,9 @@ export const newJob = asyncHandler(async (req, res, next) => {
 // Get a specific job by its id => GET /api/v1/job/:id
 export const fetchJob = asyncHandler(async (req, res, next) => {
   const job = await jobModel.findById(req.params.id);
-  if (!job) return;
+  if (!job) {
+    return next(new ErrorHandler("Job not found", 404));
+  }
   res.status(201).json({
     success: true,
     message: "Job is found",
@@ -43,7 +45,9 @@ export const fetchJob = asyncHandler(async (req, res, next) => {
 // update a specific job by its id => PUT /api/v1/job/:id
 export const updateJob = asyncHandler(async (req, res, next) => {
   let job = await jobModel.findById(req.params.id);
-  if (!job) return;
+  if (!job) {
+    return next(new ErrorHandler("Job not found", 404));
+  }
   job = await jobModel.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true,
@@ -59,7 +63,9 @@ export const updateJob = asyncHandler(async (req, res, next) => {
 // delete a specific job by its id => DELETE /api/v1/job/:id
 export const deleteJob = asyncHandler(async (req, res, next) => {
   let job = await jobModel.findById(req.params.id);
-  if (!job) return;
+  if (!job) {
+    return next(new ErrorHandler("Job not found", 404));
+  }
   await job.remove();
   res.status(200).json({
     success: true,
