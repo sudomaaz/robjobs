@@ -3,14 +3,16 @@ import apiFeatures from "../utils/apiFeatures.js";
 
 // fetch all jobs => GET /api/v1/jobs
 export const allJobs = async (req, res, next) => {
+  const total = await jobModel.countDocuments();
   const api = new apiFeatures(jobModel.find(), req.query)
     .search()
     .filter()
-    .sort();
+    .sort()
+    .pagination();
   const jobs = await api.query;
   res.status(200).json({
     success: true,
-    message: "This route displays all jobs",
+    message: total,
     data: jobs,
   });
 };

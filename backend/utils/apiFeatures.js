@@ -71,6 +71,13 @@ class apiFeatures {
     }
     return this;
   }
+
+  pagination() {
+    const page = this.queryStr.page || 1;
+    const skip = 6 * (page - 1);
+    this.query = this.query.limit(6).skip(skip);
+    return this;
+  }
 }
 
 export default apiFeatures;
