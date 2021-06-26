@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import { connectDB } from "./config/db.js";
 import router from "./routes/routes.js";
+import errorMiddleware from "./middlewares/errors.js";
 
 // instantiate express
 const app = express();
@@ -18,6 +19,9 @@ app.use(express.urlencoded({ extended: true }));
 
 // use pre-defined routes for every API request
 app.use("/api/v1", router);
+
+// apply error handle middleware
+app.use("/api/v1", errorMiddleware);
 
 // get server port from env
 const PORT = process.env.PORT || 5000;
