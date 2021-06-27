@@ -7,7 +7,9 @@ import {
   fetchJob,
 } from "../controllers/jobs.js";
 
-import { newUser, loginUser } from "../controllers/users.js";
+import { newUser, loginUser, logoutUser } from "../controllers/users.js";
+
+import authMiddleware from "../middlewares/auth.js";
 
 // instantiate express router
 const router = express.Router();
@@ -21,7 +23,10 @@ router.route("/job/:id").get(fetchJob).put(updateJob).delete(deleteJob);
 // Route to register a user
 router.route("/user/register").post(newUser);
 
-// Route to register a user
+// Route to login a user
 router.route("/user/login").post(loginUser);
+
+// Route to logout a user
+router.route("/user/logout").get(authMiddleware, logoutUser);
 
 export default router;

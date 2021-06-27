@@ -5,6 +5,12 @@ import resumeUpload from "../utils/resume.js";
 
 // Create a new User => POST /api/v1/user/register
 export const newUser = asyncHandler(async (req, res, next) => {
+  const userExists = await userModel.findOne({ email });
+  if (userExists) {
+    return next(
+      new ErrorHandler("Email address already exists.Please login", 401)
+    );
+  }
   if (req.body.role !== "employer") {
     req.body.resume = await resumeUpload(req?.files?.resume, next);
   }
@@ -39,5 +45,18 @@ export const loginUser = asyncHandler(async (req, res, next) => {
     success: true,
     message: "User logged in successfully",
     data: token,
+  });
+});
+
+// Logout a User => GET /api/v1/user/logout
+export const logoutUser = asyncHandler(async (req, res, next) => {
+  res.cookie("token", null, {
+    expires: new Date(Date.now()),
+    httpOnly: true,
+  });
+  delete req.user;
+  res.status(200).json({
+    sucecss: true,
+    message: "User has logged out successfully",
   });
 });
