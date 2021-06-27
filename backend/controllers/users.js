@@ -1,9 +1,13 @@
 import userModel from "../models/users.js";
 import asyncHandler from "express-async-handler";
 import ErrorHandler from "../utils/errorHandler.js";
+import resumeUpload from "../utils/resume.js";
 
 // Create a new User => POST /api/v1/user/register
 export const newUser = asyncHandler(async (req, res, next) => {
+  if (req.body.role !== "employer") {
+    req.body.resume = await resumeUpload(req?.files?.resume, next);
+  }
   const user = await userModel.create(req.body);
   const token = user.getJwtToken();
   res.status(201).json({
