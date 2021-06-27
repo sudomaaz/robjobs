@@ -41,10 +41,14 @@ export const loginUser = asyncHandler(async (req, res, next) => {
     ),
     httpOnly: true,
   };
+  const data = {
+    id: user._id,
+    role: user.role,
+  };
   res.status(200).cookie("token", token, options).json({
     success: true,
     message: "User logged in successfully",
-    data: token,
+    data: data,
   });
 });
 

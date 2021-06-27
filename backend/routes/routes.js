@@ -4,7 +4,7 @@ import {
   newJob,
   updateJob,
   deleteJob,
-  fetchJob,
+  applyJob,
 } from "../controllers/jobs.js";
 
 import { newUser, loginUser, logoutUser } from "../controllers/users.js";
@@ -20,10 +20,10 @@ router
   .get(allJobs)
   .post(authMiddleware, roleMiddleware("employer"), newJob);
 
-//Route to read/update/delete a specific job by its id
+//Route to apply/update/delete a specific job by its id
 router
   .route("/job/:id")
-  .get(fetchJob)
+  .get(authMiddleware, roleMiddleware("employee"), applyJob)
   .put(authMiddleware, roleMiddleware("employer"), updateJob)
   .delete(authMiddleware, roleMiddleware("employer"), deleteJob);
 

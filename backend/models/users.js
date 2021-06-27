@@ -48,11 +48,6 @@ const userSchema = new mongoose.Schema(
       type: String,
       select: false,
     },
-    applied: {
-      type: [mongoose.Schema.Types.ObjectId],
-      ref: "Job",
-      select: false,
-    },
   },
   {
     timestamps: true,
