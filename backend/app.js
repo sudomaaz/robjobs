@@ -4,6 +4,7 @@ import { connectDB } from "./config/db.js";
 import router from "./routes/routes.js";
 import errorMiddleware from "./middlewares/errors.js";
 import cookieParser from "cookie-parser";
+import fileUpload from "express-fileupload";
 
 // instantiate express
 const app = express();
@@ -20,6 +21,9 @@ app.use(express.urlencoded({ extended: true }));
 
 // enable cookie parsing on server
 app.use(cookieParser());
+
+// enable file uploading on server upto 2MB
+app.use(fileUpload({ limits: { fileSize: 2 * 1024 * 1024 } }));
 
 // use pre-defined routes for every API request
 app.use("/api/v1", router);
