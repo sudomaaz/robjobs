@@ -7,7 +7,7 @@ import {
   fetchJob,
 } from "../controllers/jobs.js";
 
-import { newUser } from "../controllers/users.js";
+import { newUser, loginUser } from "../controllers/users.js";
 
 // instantiate express router
 const router = express.Router();
@@ -20,5 +20,8 @@ router.route("/job/:id").get(fetchJob).put(updateJob).delete(deleteJob);
 
 // Route to register a user
 router.route("/user/register").post(newUser);
+
+// Route to register a user
+router.route("/user/login").post(loginUser);
 
 export default router;

@@ -35,7 +35,7 @@ export const fetchJob = asyncHandler(async (req, res, next) => {
   if (!job) {
     return next(new ErrorHandler("Job not found", 404));
   }
-  res.status(201).json({
+  res.status(200).json({
     success: true,
     message: "Job is found",
     data: job,
@@ -53,7 +53,7 @@ export const updateJob = asyncHandler(async (req, res, next) => {
     runValidators: true,
     useFindAndModify: false,
   });
-  res.status(201).json({
+  res.status(200).json({
     success: true,
     message: "This Job has been updated successfully",
     data: job,
