@@ -1,8 +1,8 @@
 [
   {
-    "company": "Google LLC",
-    "title": "AngularJs developer required",
-    "description": "angular developer required to work on a mean stack project",
+    "company": "ABC Group",
+    "title": "AngularJs",
+    "description": "angular developer required to work on a mean stack project.",
     "category": "Information Technology",
     "experience": "Fresher",
     "ctcMin": 10,
@@ -10,9 +10,9 @@
     "location": "Pune"
   },
   {
-    "company": "Facebook LLC",
-    "title": "ReactJs developer required",
-    "description": "reactjs developer required to work on a mern stack project",
+    "company": "DEF Group",
+    "title": "ReactJs",
+    "description": "reactjs developer required to work on a mern stack project.",
     "category": "Information Technology",
     "experience": "1 year - 2 years",
     "ctcMin": 15,
@@ -20,9 +20,9 @@
     "location": "Bangalore"
   },
   {
-    "company": "Amazon LLC",
-    "title": "NodeJs developer required",
-    "description": "nodejs developer required to build REST services",
+    "company": "GHI Group",
+    "title": "NodeJs",
+    "description": "nodejs developer required to build REST services.",
     "category": "Information Technology",
     "experience": "5+ years",
     "ctcMin": 30,
@@ -30,19 +30,19 @@
     "location": "Hyderabad"
   },
   {
-    "company": "Axis Bank",
-    "title": "Java developer required",
-    "description": "java and spring boot developer required",
-    "category": "Banking",
+    "company": "JKL Group",
+    "title": "Java/Spring Boot",
+    "description": "java and spring boot developer required to work on scalable project.",
+    "category": "Banking and Retail",
     "experience": "2 years - 5 years",
     "ctcMin": 15,
     "ctcMax": 20,
     "location": "Mumbai"
   },
   {
-    "company": "Udemy Inc",
-    "title": "Frontend Developer required",
-    "description": "udemy is looking for front-end developers to join their team",
+    "company": "MNO Group",
+    "title": "Frontend",
+    "description": "we are looking for front-end developers to join our team.",
     "category": "Education and Training",
     "experience": "1 year - 2 years",
     "ctcMin": 7,
@@ -50,9 +50,9 @@
     "location": "Bangalore"
   },
   {
-    "company": "ABC Corp",
-    "title": "Language translator required",
-    "description": "looking for german language translators to join our team",
+    "company": "PQR Group",
+    "title": "Language translator",
+    "description": "looking for german language translators to join our team.",
     "category": "Others",
     "experience": "2 years - 5 years",
     "ctcMin": 5,
