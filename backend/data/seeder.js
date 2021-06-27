@@ -10,16 +10,14 @@ const rawData = fs.readFileSync("backend/data/jobs.json");
 connectDB();
 
 try {
-  if (process.argv[2] === "-j") {
-    await jobModel.deleteMany();
+  await jobModel.deleteMany();
 
-    console.log("Deleted items");
+  console.log("Deleted items");
 
-    await jobModel.insertMany(JSON.parse(rawData));
+  await jobModel.insertMany(JSON.parse(rawData));
 
-    console.log("Inserted items");
-    process.exit(0);
-  }
+  console.log("Inserted items");
+  process.exit(0);
 } catch (err) {
   console.log(err);
   process.exit(1);

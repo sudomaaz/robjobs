@@ -23,6 +23,19 @@ const userSchema = new mongoose.Schema(
       minLength: [6, "password must be atleast 6 characters"],
       select: false,
     },
+    experience: {
+      type: String,
+      required: true,
+      enum: {
+        values: [
+          "Fresher",
+          "1 year - 2 years",
+          "2 years - 5 years",
+          "5+ years",
+        ],
+        message: "Please select a valid option for experience level",
+      },
+    },
     role: {
       type: String,
       required: true,
@@ -30,7 +43,10 @@ const userSchema = new mongoose.Schema(
         values: ["employee", "employer"],
         message: "Please select a valid user role",
       },
-      default: "employee",
+    },
+    resume: {
+      type: String,
+      select: false,
     },
     applied: {
       type: [mongoose.Schema.Types.ObjectId],
