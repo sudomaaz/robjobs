@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import { connectDB } from "./config/db.js";
 import router from "./routes/routes.js";
 import errorMiddleware from "./middlewares/errors.js";
+import cookieParser from "cookie-parser";
 
 // instantiate express
 const app = express();
@@ -16,6 +17,9 @@ connectDB();
 // enable body-parser middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// enable cookie parsing on server
+app.use(cookieParser());
 
 // use pre-defined routes for every API request
 app.use("/api/v1", router);

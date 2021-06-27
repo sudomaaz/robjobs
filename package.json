@@ -26,9 +26,13 @@
   },
   "homepage": "https://github.com/sudomaaz/robjobs#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-async-handler": "^1.1.4",
-    "mongoose": "^5.12.14"
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.12.14",
+    "validator": "^13.6.0"
   }
 }

@@ -60,7 +60,12 @@ const jobSchema = new mongoose.Schema(
       required: [true, "Please enter job location"],
       trim: true,
     },
-    User: {
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      select: false,
+      ref: "User",
+    },
+    applied: {
       type: [Object],
       select: false,
     },
@@ -70,6 +75,6 @@ const jobSchema = new mongoose.Schema(
   }
 );
 
-const jobModel = mongoose.model("job", jobSchema);
+const jobModel = mongoose.model("Job", jobSchema);
 
 export default jobModel;
