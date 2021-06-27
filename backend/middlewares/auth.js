@@ -4,7 +4,7 @@ import asyncHandler from "express-async-handler";
 import ErrorHandler from "../utils/errorHandler.js";
 
 // authentication middleware
-const authMiddleware = asyncHandler(async (req, res, next) => {
+export const authMiddleware = asyncHandler(async (req, res, next) => {
   const token = req.cookies.token;
   if (!token) {
     return next(
@@ -22,4 +22,13 @@ const authMiddleware = asyncHandler(async (req, res, next) => {
   next();
 });
 
-export default authMiddleware;
+export const roleMiddleware = (role) => {
+  return (req, res, next) => {
+    if (req.user.role !== role) {
+      return next(
+        new ErrorHandler("You are not authorized to access this page", 403)
+      );
+    }
+    next();
+  };
+};
