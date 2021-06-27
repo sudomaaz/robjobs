@@ -7,7 +7,9 @@ import ErrorHandler from "../utils/errorHandler.js";
 const authMiddleware = asyncHandler(async (req, res, next) => {
   const token = req.cookies.token;
   if (!token) {
-    return next(new ErrorHandler("You need to login to access this page", 403));
+    return next(
+      new ErrorHandler("You need to login first to access this page", 403)
+    );
   }
   const uid = jwt.verify(token, process.env.JWT_SECRET);
   const user = await userModel.findById(uid.id);

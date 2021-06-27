@@ -15,10 +15,14 @@ import authMiddleware from "../middlewares/auth.js";
 const router = express.Router();
 
 // Route to get all available jobs
-router.route("/jobs").get(allJobs).post(newJob);
+router.route("/jobs").get(allJobs).post(authMiddleware, newJob);
 
 //Route to read/update/delete a specific job by its id
-router.route("/job/:id").get(fetchJob).put(updateJob).delete(deleteJob);
+router
+  .route("/job/:id")
+  .get(fetchJob)
+  .put(authMiddleware, updateJob)
+  .delete(authMiddleware, deleteJob);
 
 // Route to register a user
 router.route("/user/register").post(newUser);
