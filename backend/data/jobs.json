@@ -1,12 +1,12 @@
 [
   {
     "company": "Google LLC",
-    "title": "NodeJs developer required",
-    "description": "nodejs developer required to work on a mean stack project",
+    "title": "AngularJs developer required",
+    "description": "angular developer required to work on a mean stack project",
     "category": "Information Technology",
     "experience": "Fresher",
-    "ctcMin": 2,
-    "ctcMax": 5,
+    "ctcMin": 10,
+    "ctcMax": 15,
     "location": "Pune"
   },
   {
@@ -15,18 +15,48 @@
     "description": "reactjs developer required to work on a mern stack project",
     "category": "Information Technology",
     "experience": "1 year - 2 years",
-    "ctcMin": 6,
-    "ctcMax": 10,
+    "ctcMin": 15,
+    "ctcMax": 20,
     "location": "Bangalore"
   },
   {
     "company": "Amazon LLC",
-    "title": "ReactJs developer required",
-    "description": "reactjs developer required to work on a mern stack project",
+    "title": "NodeJs developer required",
+    "description": "nodejs developer required to build REST services",
     "category": "Information Technology",
     "experience": "5+ years",
+    "ctcMin": 30,
+    "ctcMax": 50,
+    "location": "Hyderabad"
+  },
+  {
+    "company": "Axis Bank",
+    "title": "Java developer required",
+    "description": "java and spring boot developer required",
+    "category": "Banking",
+    "experience": "2 years - 5 years",
     "ctcMin": 15,
     "ctcMax": 20,
-    "location": "Hyderabad"
+    "location": "Mumbai"
+  },
+  {
+    "company": "Udemy Inc",
+    "title": "Frontend Developer required",
+    "description": "udemy is looking for front-end developers to join their team",
+    "category": "Education and Training",
+    "experience": "1 year - 2 years",
+    "ctcMin": 7,
+    "ctcMax": 15,
+    "location": "Bangalore"
+  },
+  {
+    "company": "ABC Corp",
+    "title": "Language translator required",
+    "description": "looking for german language translators to join our team",
+    "category": "Others",
+    "experience": "2 years - 5 years",
+    "ctcMin": 5,
+    "ctcMax": 7,
+    "location": "Mumbai"
   }
 ]
