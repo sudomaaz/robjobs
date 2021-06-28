@@ -6,30 +6,28 @@ class apiFeatures {
 
   search() {
     const queryCopy = {};
-    if (this.queryStr.title) {
+    if (this.queryStr.q) {
       queryCopy.$or = [];
-      queryCopy.$or.push({
-        title: {
-          $regex: this.queryStr.title,
-          $options: "i",
+      queryCopy.$or.push(
+        {
+          title: {
+            $regex: this.queryStr.q,
+            $options: "i",
+          },
         },
-      });
-    }
-    if (this.queryStr.company) {
-      queryCopy.$or.push({
-        company: {
-          $regex: this.queryStr.company,
-          $options: "i",
+        {
+          company: {
+            $regex: this.queryStr.q,
+            $options: "i",
+          },
         },
-      });
-    }
-    if (this.queryStr.location) {
-      queryCopy.$or.push({
-        location: {
-          $regex: this.queryStr.location,
-          $options: "i",
-        },
-      });
+        {
+          description: {
+            $regex: this.queryStr.q,
+            $options: "i",
+          },
+        }
+      );
     }
     this.query = this.query.find(queryCopy);
     return this;
@@ -39,17 +37,11 @@ class apiFeatures {
     if (
       this.queryStr.experience ||
       this.queryStr.category ||
-      this.queryStr.range
+      this.queryStr.range ||
+      this.queryStr.location
     ) {
       const queryCopy = { ...this.queryStr };
-      const queryDelete = [
-        "title",
-        "company",
-        "location",
-        "page",
-        "limit",
-        "sort",
-      ];
+      const queryDelete = ["q", "page", "limit", "sort"];
       queryDelete.forEach((q) => delete queryCopy[q]);
       if (this.queryStr.range) {
         const range = this.queryStr.range.split("-");
@@ -74,8 +66,8 @@ class apiFeatures {
 
   pagination() {
     const page = this.queryStr.page || 1;
-    const skip = 6 * (page - 1);
-    this.query = this.query.limit(6).skip(skip);
+    const skip = 1 * (page - 1);
+    this.query = this.query.limit(1).skip(skip);
     return this;
   }
 }
