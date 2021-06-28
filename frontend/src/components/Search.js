@@ -1,6 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
+import { useLocation, useHistory } from "react-router";
 
 const Search = () => {
+  const location = useLocation();
+  const history = useHistory();
+  const [search, setSearch] = useState("");
+  const callSearch = () => {
+    const url = location.pathname + "?q=" + search;
+    history.push(url);
+  };
   return (
     <div className="row mt-5">
       <div className="col-2"></div>
@@ -9,14 +17,16 @@ const Search = () => {
           <div className="form-group row">
             <input
               type="text"
+              onChange={(e) => setSearch(e.target.value)}
+              value={search}
               className="form-control-lg"
-              placeholder="search by job title,company,location"
+              placeholder="search by either job title or description or company or location"
             />
           </div>
         </form>
       </div>
       <div className="col-2">
-        <button type="submit" className="btn btn-primary">
+        <button onClick={callSearch} className="btn btn-primary">
           Search
         </button>
       </div>

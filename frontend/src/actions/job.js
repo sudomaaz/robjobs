@@ -15,7 +15,7 @@ const jobAction = (searchQuery) => async (dispatch) => {
         "Content-Type": "application/json",
       },
     };
-    const { data } = await axios.get("/api/v1/jobs", options);
+    const { data } = await axios.get("/api/v1/jobs" + searchQuery, options);
     dispatch({
       type: JOB_DATA_SUCCESS,
       payload: data.data,

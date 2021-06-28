@@ -2,12 +2,23 @@ import React from "react";
 
 const Card = (props) => {
   return (
-    <div className="col" key={props.info._id}>
-      <div className="card bg-danger mb-3" key={props.info._id}>
-        <div className="card-header">{props.info.title}</div>
+    <div className="col">
+      <div className="card bg-light mb-3 h-100">
+        <div className="card-header bg-danger">{props.info.title}</div>
         <div className="card-body">
           <h4 className="card-title">{props.info.company}</h4>
           <p className="card-text">{props.info.description}</p>
+          <p className="card-text">{props.info.category}</p>
+          <p className="card-text">{props.info.experience}</p>
+          <p className="card-text">
+            {props.info.ctcMin}L - {props.info.ctcMax}L
+          </p>
+          <p className="card-text">{props.info.location}</p>
+        </div>
+        <div className="card-footer bg-dark d-grid gap-2">
+          <button type="button" className="btn btn-lg btn-primary">
+            Apply
+          </button>
         </div>
       </div>
     </div>

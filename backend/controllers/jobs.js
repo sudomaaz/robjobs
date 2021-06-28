@@ -6,11 +6,7 @@ import ErrorHandler from "../utils/errorHandler.js";
 // fetch all jobs => GET /api/v1/jobs
 export const allJobs = asyncHandler(async (req, res, next) => {
   const total = await jobModel.countDocuments();
-  const api = new apiFeatures(jobModel.find(), req.query)
-    .search()
-    .filter()
-    .sort()
-    .pagination();
+  const api = new apiFeatures(jobModel.find(), req.query).search();
   const jobs = await api.query;
   res.status(200).json({
     success: true,

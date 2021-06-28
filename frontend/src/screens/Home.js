@@ -14,7 +14,7 @@ const Home = () => {
   const { loading, error, jobs } = useSelector((state) => state.jobReducer);
   useEffect(() => {
     dispatch(jobAction(location.search));
-  }, [dispatch]);
+  }, [dispatch, location.search]);
   return (
     <>
       <Header />
@@ -24,10 +24,14 @@ const Home = () => {
         <div className="col-8">
           {loading ? (
             <Spinner />
+          ) : error ? (
+            <div className="alert alert-primary mt-3" role="alert">
+              {error}
+            </div>
           ) : jobs ? (
             <div className="row row-cols-1 row-cols-md-3 g-3 mt-3">
               {jobs.map((j) => (
-                <Card info={j} />
+                <Card key={j._id} info={j} />
               ))}
             </div>
           ) : null}
