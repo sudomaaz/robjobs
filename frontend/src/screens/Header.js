@@ -5,7 +5,7 @@ const Header = () => {
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
       <div className="container-fluid">
         <a className="navbar-brand" href="#">
-          Navbar
+          RobJobs
         </a>
         <button
           className="navbar-toggler"
@@ -19,8 +19,8 @@ const Header = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div className="collapse navbar-collapse" id="navbarColor01">
-          <ul className="navbar-nav mr-auto">
+        <div className="collapse navbar-collapse ml-auto" id="navbarColor01">
+          <ul className="navbar-nav ml-auto">
             <li className="nav-item">
               <a className="nav-link active" href="#">
                 Login
