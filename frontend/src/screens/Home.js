@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
-import Header from "../components/Header";
 import Search from "../components/Search";
 import Card from "../components/Card";
-import Footer from "../components/Footer";
 import Spinner from "../components/Spinner";
 import { useDispatch, useSelector } from "react-redux";
 import jobAction from "../actions/job";
@@ -17,7 +15,6 @@ const Home = () => {
   }, [dispatch, location.search]);
   return (
     <>
-      <Header />
       <Search />
       <div className="row">
         <div className="col-2"></div>
@@ -38,7 +35,6 @@ const Home = () => {
         </div>
         <div className="col-2"></div>
       </div>
-      <Footer />
     </>
   );
 };
