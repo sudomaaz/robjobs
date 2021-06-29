@@ -12,6 +12,9 @@ import {
   USER_LOGOUT_FAILURE,
   USER_LOGOUT_REQUEST,
   USER_LOGOUT_SUCCESS,
+  USER_JOB_FAILURE,
+  USER_JOB_SUCCESS,
+  USER_JOB_REQUEST,
 } from "./constants";
 
 export const userRegAction = (form) => async (dispatch) => {
@@ -108,6 +111,32 @@ export const logoutAction = () => async (dispatch) => {
     else error = "Some error occured";
     dispatch({
       type: USER_LOGOUT_FAILURE,
+      payload: error,
+    });
+  }
+};
+
+export const userJobAction = (uid) => async (dispatch) => {
+  try {
+    dispatch({
+      type: USER_JOB_REQUEST,
+    });
+    const options = {
+      headers: {
+        "Content-Type": `application/json`,
+      },
+    };
+    const { data } = await axios.get("/api/v1/jobs/" + uid, options);
+    dispatch({
+      type: USER_JOB_SUCCESS,
+      payload: data.data,
+    });
+  } catch (err) {
+    let error;
+    if (err?.response?.data?.message) error = err.response.data.message;
+    else error = "Some error occured";
+    dispatch({
+      type: USER_JOB_FAILURE,
       payload: error,
     });
   }

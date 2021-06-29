@@ -2,20 +2,26 @@ import {
   JOB_DATA_REQUEST,
   JOB_DATA_SUCCESS,
   JOB_DATA_FAILURE,
+  JOB_APPLY_SUCCESS,
+  JOB_APPLY_REQUEST,
+  JOB_APPLY_FAILURE,
+  JOB_APPLY_CLEAR,
 } from "../actions/constants";
 
-const jobReducer = (state = { jobs: [] }, action) => {
+export const jobReducer = (state = { jobs: [] }, action) => {
   switch (action.type) {
     case JOB_DATA_REQUEST:
       return {
         ...state,
         loading: true,
+        error: null,
       };
     case JOB_DATA_SUCCESS:
       return {
         ...state,
         loading: false,
         jobs: action.payload,
+        error: null,
       };
     case JOB_DATA_FAILURE:
       return {
@@ -28,4 +34,35 @@ const jobReducer = (state = { jobs: [] }, action) => {
   }
 };
 
-export default jobReducer;
+export const applyReducer = (state = {}, action) => {
+  switch (action.type) {
+    case JOB_APPLY_REQUEST:
+      return {
+        ...state,
+        loading_: true,
+        job: null,
+        error_: null,
+      };
+    case JOB_APPLY_SUCCESS:
+      return {
+        ...state,
+        loading_: false,
+        job: action.payload,
+      };
+    case JOB_APPLY_FAILURE:
+      return {
+        ...state,
+        loading_: false,
+        error_: action.payload,
+      };
+    case JOB_APPLY_CLEAR:
+      return {
+        ...state,
+        loading_: false,
+        error: null,
+        job: null,
+      };
+    default:
+      return state;
+  }
+};

@@ -1,5 +1,4 @@
 import React from "react";
-
 const Card = (props) => {
   return (
     <div className="col">
@@ -16,8 +15,13 @@ const Card = (props) => {
           <p className="card-text">{props.info.location}</p>
         </div>
         <div className="card-footer d-grid gap-2">
-          <button type="button" className="btn btn-lg btn-primary btn-block">
-            Apply
+          <button
+            onClick={() => props.call(props.info._id)}
+            type="button"
+            className="btn btn-lg btn-primary btn-block"
+            disabled={props.dashboard}
+          >
+            {props.dashboard ? "Applied" : "Apply"}
           </button>
         </div>
       </div>

@@ -11,6 +11,9 @@ import {
   USER_LOGOUT_SUCCESS,
   USER_LOGOUT_REQUEST,
   USER_LOGOUT_FAILURE,
+  USER_JOB_FAILURE,
+  USER_JOB_SUCCESS,
+  USER_JOB_REQUEST,
 } from "../actions/constants";
 
 export const userReducer = (state = { error: [] }, action) => {
@@ -36,7 +39,7 @@ export const userReducer = (state = { error: [] }, action) => {
         ...state,
         loading: false,
         registered: false,
-        user: action.payload,
+        user: null,
         error: null,
       };
 
@@ -52,6 +55,33 @@ export const userReducer = (state = { error: [] }, action) => {
     case USER_LOGIN_FAILURE:
     case GET_USER_FAILURE:
     case USER_LOGOUT_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        user: null,
+        error: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
+export const userJobReducer = (state = { jobs: [] }, action) => {
+  switch (action.type) {
+    case USER_JOB_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+    case USER_JOB_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        jobs: action.payload,
+        error: null,
+      };
+    case USER_JOB_FAILURE:
       return {
         ...state,
         loading: false,

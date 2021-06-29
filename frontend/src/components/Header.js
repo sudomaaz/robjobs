@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
 import { logoutAction } from "../actions/user";
+import { clearAction } from "../actions/job";
 
 const Header = () => {
   const { user } = useSelector((state) => state.userReducer);
@@ -10,6 +11,7 @@ const Header = () => {
   const alert = useAlert();
   const logoutHandler = () => {
     dispatch(logoutAction());
+    dispatch(clearAction());
     alert.success("Logged out Successfully");
   };
   return (
@@ -48,35 +50,26 @@ const Header = () => {
                   className="dropdown-menu dropdown-menu-dark"
                   aria-labelledby="navbarDarkDropdownMenuLink"
                 >
-                  <li>
-                    <Link className="dropdown-item" to="/dashboard">
-                      Dashboard
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      onClick={() => logoutHandler()}
-                      className="dropdown-item"
-                      to="#"
-                    >
-                      Logout
-                    </Link>
-                  </li>
+                  <Link className="dropdown-item" to="/dashboard">
+                    <li>Dashboard</li>
+                  </Link>
+                  <Link
+                    onClick={() => logoutHandler()}
+                    className="dropdown-item"
+                    to="#"
+                  >
+                    <li>Logout</li>
+                  </Link>
                 </ul>
               </li>
             ) : (
-              <li className="nav-item">
-                <Link className="nav-link active" to="/login">
-                  Login
-                  <span className="visually-hidden">(current)</span>
-                </Link>
-              </li>
-            )}
-            <li className="nav-item">
-              <Link className="nav-link" to="/register">
-                Sign Up
+              <Link className="nav-link active" to="/login">
+                <li className="nav-item">Login</li>
               </Link>
-            </li>
+            )}
+            <Link className="nav-link" to="/register">
+              <li className="nav-item">Sign Up</li>
+            </Link>
           </ul>
         </div>
       </div>

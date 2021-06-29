@@ -8,7 +8,7 @@ import "./bootstrap.min.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { loggedAction } from "./actions/user";
-
+import Dashboard from "./screens/Dashboard";
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -23,6 +23,9 @@ function App() {
         </Route>
         <Route exact path="/register">
           <Register />
+        </Route>
+        <Route exact path="/dashboard">
+          <Dashboard />
         </Route>
         <Route exact path="/">
           <Home />
