@@ -2,6 +2,7 @@ import jobModel from "../models/jobs.js";
 import apiFeatures from "../utils/apiFeatures.js";
 import asyncHandler from "express-async-handler";
 import ErrorHandler from "../utils/errorHandler.js";
+import mongoose from "mongoose";
 
 // fetch all jobs => GET /api/v1/jobs
 export const allJobs = asyncHandler(async (req, res, next) => {
@@ -11,6 +12,17 @@ export const allJobs = asyncHandler(async (req, res, next) => {
   res.status(200).json({
     success: true,
     message: total,
+    data: jobs,
+  });
+});
+
+// fetch all jobs applied by user => GET /api/v1/jobs/:uid
+export const userJobs = asyncHandler(async (req, res, next) => {
+  const { uid } = req.params;
+  const jobs = await jobModel.find({ applied: uid });
+  res.status(200).json({
+    success: true,
+    message: jobs.length,
     data: jobs,
   });
 });

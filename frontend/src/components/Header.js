@@ -1,13 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { useAlert } from "react-alert";
 import { logoutAction } from "../actions/user";
 
 const Header = () => {
   const { user } = useSelector((state) => state.userReducer);
   const dispatch = useDispatch();
+  const alert = useAlert();
   const logoutHandler = () => {
     dispatch(logoutAction());
+    alert.success("Logged out Successfully");
   };
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">

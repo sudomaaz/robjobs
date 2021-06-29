@@ -1,6 +1,7 @@
 import express from "express";
 import {
   allJobs,
+  userJobs,
   newJob,
   updateJob,
   deleteJob,
@@ -24,6 +25,10 @@ router
   .route("/jobs")
   .get(allJobs)
   .post(authMiddleware, roleMiddleware("employer"), newJob);
+
+// route to display user jobs
+
+router.route("/jobs/:uid").get(userJobs);
 
 //Route to apply/update/delete a specific job by its id
 router
