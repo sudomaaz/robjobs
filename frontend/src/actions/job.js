@@ -21,9 +21,12 @@ const jobAction = (searchQuery) => async (dispatch) => {
       payload: data.data,
     });
   } catch (err) {
+    let error;
+    if (err?.response?.data?.message) error = err.response.data.message;
+    else error = "Some error occured";
     dispatch({
       type: JOB_DATA_FAILURE,
-      payload: err.response.data.message,
+      payload: error,
     });
   }
 };

@@ -5,7 +5,7 @@ import resumeUpload from "../utils/resume.js";
 
 // Create a new User => POST /api/v1/user/register
 export const newUser = asyncHandler(async (req, res, next) => {
-  const userExists = await userModel.findOne({ email });
+  const userExists = await userModel.findOne({ email: req.body.email });
   if (userExists) {
     return next(
       new ErrorHandler("Email address already exists.Please login", 401)
@@ -19,7 +19,7 @@ export const newUser = asyncHandler(async (req, res, next) => {
   res.status(201).json({
     success: true,
     message: "User has been registered successfully",
-    data: token,
+    data: user,
   });
 });
 
