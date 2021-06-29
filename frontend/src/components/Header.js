@@ -50,9 +50,21 @@ const Header = () => {
                   className="dropdown-menu dropdown-menu-dark"
                   aria-labelledby="navbarDarkDropdownMenuLink"
                 >
-                  <Link className="dropdown-item" to="/dashboard">
-                    <li>Dashboard</li>
-                  </Link>
+                  {user.role === "employee" && (
+                    <Link className="dropdown-item" to="/employee">
+                      <li>Dashboard</li>
+                    </Link>
+                  )}
+                  {user.role === "employer" && (
+                    <>
+                      <Link className="dropdown-item" to="/newjob">
+                        <li>Post job</li>
+                      </Link>
+                      <Link className="dropdown-item" to="/employer">
+                        <li>Dashboard</li>
+                      </Link>
+                    </>
+                  )}
                   <Link
                     onClick={() => logoutHandler()}
                     className="dropdown-item"

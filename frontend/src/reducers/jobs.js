@@ -6,6 +6,10 @@ import {
   JOB_APPLY_REQUEST,
   JOB_APPLY_FAILURE,
   JOB_APPLY_CLEAR,
+  JOB_ADD_CLEAR,
+  JOB_ADD_SUCCESS,
+  JOB_ADD_REQUEST,
+  JOB_ADD_FAILURE,
 } from "../actions/constants";
 
 export const jobReducer = (state = { jobs: [] }, action) => {
@@ -61,6 +65,41 @@ export const applyReducer = (state = {}, action) => {
         loading_: false,
         error: null,
         job: null,
+      };
+    default:
+      return state;
+  }
+};
+
+export const jobAddReducer = (state = {}, action) => {
+  switch (action.type) {
+    case JOB_ADD_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        added: null,
+        error: null,
+      };
+    case JOB_ADD_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        added: true,
+        error: null,
+      };
+    case JOB_ADD_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        added: null,
+        error: action.payload,
+      };
+    case JOB_ADD_CLEAR:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        added: null,
       };
     default:
       return state;

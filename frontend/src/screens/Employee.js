@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { userJobAction } from "../actions/user";
 import { Redirect } from "react-router-dom";
 
-const Dashboard = () => {
+const Employee = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.userReducer);
   const { loading, jobs, error } = useSelector((state) => state.userJobReducer);
@@ -46,4 +46,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Employee;

@@ -6,17 +6,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { jobAction } from "../actions/job";
 import { useLocation } from "react-router-dom";
 import { useAlert } from "react-alert";
-import { applyAction } from "../actions/job";
+import { applyAction, clearAction } from "../actions/job";
 
 const Home = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const alert = useAlert();
   const { loading, error, jobs } = useSelector((state) => state.jobReducer);
-  //const { job, error_ } = useSelector((state) => state.applyReducer);
+  const { added } = useSelector((state) => state.jobAddReducer);
   useEffect(() => {
     dispatch(jobAction(location.search));
   }, [dispatch, location.search]);
+
+  if (added) {
+    dispatch(clearAction());
+  }
 
   const applyHandler = (id) => {
     dispatch(applyAction(id));

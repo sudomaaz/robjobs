@@ -1,12 +1,5 @@
 import express from "express";
-import {
-  allJobs,
-  userJobs,
-  newJob,
-  updateJob,
-  deleteJob,
-  applyJob,
-} from "../controllers/jobs.js";
+import { allJobs, userJobs, newJob, applyJob } from "../controllers/jobs.js";
 
 import {
   newUser,
@@ -20,7 +13,7 @@ import { authMiddleware, roleMiddleware } from "../middlewares/auth.js";
 // instantiate express router
 const router = express.Router();
 
-// Route to get all available jobs
+// Route to get all/create new jobs
 router
   .route("/jobs")
   .get(allJobs)
@@ -30,12 +23,10 @@ router
 
 router.route("/jobs/:uid").get(userJobs);
 
-//Route to apply/update/delete a specific job by its id
+//Route to apply to a specific job by its id
 router
   .route("/job/:id")
-  .get(authMiddleware, roleMiddleware("employee"), applyJob)
-  .put(authMiddleware, roleMiddleware("employer"), updateJob)
-  .delete(authMiddleware, roleMiddleware("employer"), deleteJob);
+  .get(authMiddleware, roleMiddleware("employee"), applyJob);
 
 // Route to register a user
 router.route("/user/register").post(newUser);

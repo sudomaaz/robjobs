@@ -38,6 +38,11 @@ class apiFeatures {
     this.query = this.query.find(queryCopy);
     return this;
   }
+
+  sort() {
+    this.query = this.query.sort({ createdAt: -1 });
+    return this;
+  }
 }
 
 export default apiFeatures;

@@ -7,7 +7,7 @@ import mongoose from "mongoose";
 // fetch all jobs => GET /api/v1/jobs
 export const allJobs = asyncHandler(async (req, res, next) => {
   const total = await jobModel.countDocuments();
-  const api = new apiFeatures(jobModel.find(), req.query).search();
+  const api = new apiFeatures(jobModel.find(), req.query).search().sort();
   const jobs = await api.query;
   res.status(200).json({
     success: true,
@@ -19,7 +19,7 @@ export const allJobs = asyncHandler(async (req, res, next) => {
 // fetch all jobs applied by user => GET /api/v1/jobs/:uid
 export const userJobs = asyncHandler(async (req, res, next) => {
   const { uid } = req.params;
-  const jobs = await jobModel.find({ applied: uid });
+  const jobs = await jobModel.find({ applied: uid }).sort({ updatedAt: -1 });
   res.status(200).json({
     success: true,
     message: jobs.length,
@@ -58,37 +58,5 @@ export const applyJob = asyncHandler(async (req, res, next) => {
     success: true,
     message: "Applied successfully for this job",
     data: data,
-  });
-});
-
-// update a specific job by its id => PUT /api/v1/job/:id
-export const updateJob = asyncHandler(async (req, res, next) => {
-  let job = await jobModel.findById(req.params.id);
-  if (!job) {
-    return next(new ErrorHandler("Job not found", 404));
-  }
-  job = await jobModel.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-    runValidators: true,
-    useFindAndModify: false,
-  });
-  res.status(200).json({
-    success: true,
-    message: "This Job has been updated successfully",
-    data: job,
-  });
-});
-
-// delete a specific job by its id => DELETE /api/v1/job/:id
-export const deleteJob = asyncHandler(async (req, res, next) => {
-  let job = await jobModel.findById(req.params.id);
-  if (!job) {
-    return next(new ErrorHandler("Job not found", 404));
-  }
-  await job.remove();
-  res.status(200).json({
-    success: true,
-    message: "This job has been deleted successfully",
-    data: null,
   });
 });
