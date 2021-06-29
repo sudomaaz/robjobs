@@ -3,9 +3,12 @@ import {
   USER_REG_REQUEST,
   USER_REG_SUCCESS,
   USER_REG_FAILURE,
+  USER_LOGIN_FAILURE,
+  USER_LOGIN_SUCCESS,
+  USER_LOGIN_REQUEST,
 } from "./constants";
 
-const userAction = (form) => async (dispatch) => {
+export const userRegAction = (form) => async (dispatch) => {
   try {
     dispatch({
       type: USER_REG_REQUEST,
@@ -32,4 +35,28 @@ const userAction = (form) => async (dispatch) => {
   }
 };
 
-export default userAction;
+export const userLoginAction = (login) => async (dispatch) => {
+  try {
+    dispatch({
+      type: USER_LOGIN_REQUEST,
+    });
+    const options = {
+      headers: {
+        "Content-Type": `application/json`,
+      },
+    };
+    const { data } = await axios.post("/api/v1/user/login", login, options);
+    dispatch({
+      type: USER_LOGIN_SUCCESS,
+      payload: data.data,
+    });
+  } catch (err) {
+    let error;
+    if (err?.response?.data?.message) error = err.response.data.message;
+    else error = "Some error occured";
+    dispatch({
+      type: USER_LOGIN_FAILURE,
+      payload: error,
+    });
+  }
+};

@@ -2,11 +2,12 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import jobReducer from "./reducers/jobs";
-import userReducer from "./reducers/users";
+import { userRegReducer, userLoginReducer } from "./reducers/users";
 
 const reducer = combineReducers({
   jobReducer,
-  userReducer,
+  userRegReducer,
+  userLoginReducer,
 });
 
 const initialState = {};

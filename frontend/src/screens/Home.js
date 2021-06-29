@@ -13,6 +13,10 @@ const Home = () => {
   useEffect(() => {
     dispatch(jobAction(location.search));
   }, [dispatch, location.search]);
+  const { user } = useSelector((state) => state.userLoginReducer);
+  if (user) {
+    console.log(user);
+  }
   return (
     <>
       <Search />

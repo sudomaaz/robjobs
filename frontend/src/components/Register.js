@@ -1,16 +1,16 @@
 import React, { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import userAction from "../actions/user";
+import { userRegAction } from "../actions/user";
 import Spinner from "../components/Spinner";
 
 const Register = () => {
   const formRef = useRef(null);
   const dispatch = useDispatch();
-  const { loading, error } = useSelector((state) => state.userReducer);
+  const { loading, error } = useSelector((state) => state.userRegReducer);
   const submitHandler = (e) => {
     e.preventDefault();
     const data = new FormData(formRef.current);
-    dispatch(userAction(data));
+    dispatch(userRegAction(data));
   };
   return (
     <div className="row mt-2">
@@ -33,6 +33,7 @@ const Register = () => {
           <h1>Register with us</h1>
         </legend>
         <form
+          method="POST"
           ref={formRef}
           onSubmit={submitHandler}
           encType="multipart/form-data"
