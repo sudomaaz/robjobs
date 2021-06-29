@@ -6,7 +6,9 @@ import Spinner from "../components/Spinner";
 const Register = () => {
   const formRef = useRef(null);
   const dispatch = useDispatch();
-  const { loading, error } = useSelector((state) => state.userRegReducer);
+  const { loading, registered, error } = useSelector(
+    (state) => state.userReducer
+  );
   const submitHandler = (e) => {
     e.preventDefault();
     const data = new FormData(formRef.current);
@@ -24,11 +26,11 @@ const Register = () => {
               {e}
             </div>
           ))
-        ) : (
+        ) : registered ? (
           <div className="alert alert-success mt-3" role="alert">
             User has been registered successfully
           </div>
-        )}
+        ) : null}
         <legend>
           <h1>Register with us</h1>
         </legend>

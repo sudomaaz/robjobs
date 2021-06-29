@@ -60,3 +60,11 @@ export const logoutUser = asyncHandler(async (req, res, next) => {
     message: "User has logged out successfully",
   });
 });
+
+// Get Logged in User => GET /api/v1/user/me
+export const loggedUser = asyncHandler(async (req, res, next) => {
+  res.status(200).json({
+    sucecss: true,
+    data: req.user,
+  });
+});

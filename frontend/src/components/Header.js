@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 const Header = () => {
+  const { user } = useSelector((state) => state.userReducer);
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
       <div className="container-fluid">
@@ -22,10 +24,14 @@ const Header = () => {
         <div className="collapse navbar-collapse" id="navbarColor01">
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
-              <Link className="nav-link active" to="/login">
-                Login
-                <span className="visually-hidden">(current)</span>
-              </Link>
+              {user ? (
+                user.name
+              ) : (
+                <Link className="nav-link active" to="/login">
+                  Login
+                  <span className="visually-hidden">(current)</span>
+                </Link>
+              )}
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/register">

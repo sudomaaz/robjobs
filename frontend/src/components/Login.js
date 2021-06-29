@@ -6,9 +6,10 @@ import { Redirect } from "react-router-dom";
 const Login = () => {
   const formRef = useRef(null);
   const dispatch = useDispatch();
-  const { loading, user, error } = useSelector(
-    (state) => state.userLoginReducer
-  );
+  const { loading, error, user } = useSelector((state) => state.userReducer);
+  if (user) {
+    return <Redirect to="/" />;
+  }
   const submitHandler = (e) => {
     e.preventDefault();
     const data = {
@@ -17,9 +18,6 @@ const Login = () => {
     };
     dispatch(userLoginAction(data));
   };
-  if (user) {
-    return <Redirect to="/" />;
-  }
   return (
     <div className="row mt-5">
       <div className="col-4"></div>

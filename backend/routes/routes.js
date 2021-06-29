@@ -7,7 +7,12 @@ import {
   applyJob,
 } from "../controllers/jobs.js";
 
-import { newUser, loginUser, logoutUser } from "../controllers/users.js";
+import {
+  newUser,
+  loginUser,
+  logoutUser,
+  loggedUser,
+} from "../controllers/users.js";
 
 import { authMiddleware, roleMiddleware } from "../middlewares/auth.js";
 
@@ -35,5 +40,8 @@ router.route("/user/login").post(loginUser);
 
 // Route to logout a user
 router.route("/user/logout").get(authMiddleware, logoutUser);
+
+// Route to get logged in user
+router.route("/user/me").get(authMiddleware, loggedUser);
 
 export default router;
