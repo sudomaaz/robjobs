@@ -1,8 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { logoutAction } from "../actions/user";
+
 const Header = () => {
   const { user } = useSelector((state) => state.userReducer);
+  const dispatch = useDispatch();
+  const logoutHandler = () => {
+    dispatch(logoutAction());
+  };
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
       <div className="container-fluid">
@@ -23,16 +29,46 @@ const Header = () => {
 
         <div className="collapse navbar-collapse" id="navbarColor01">
           <ul className="navbar-nav ms-auto">
-            <li className="nav-item">
-              {user ? (
-                user.name
-              ) : (
+            {user ? (
+              <li className="nav-item dropdown">
+                <Link
+                  className="nav-link active dropdown-toggle"
+                  to="#"
+                  id="navbarDarkDropdownMenuLink"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  {user.name}
+                </Link>
+                <ul
+                  className="dropdown-menu dropdown-menu-dark"
+                  aria-labelledby="navbarDarkDropdownMenuLink"
+                >
+                  <li>
+                    <Link className="dropdown-item" to="/dashboard">
+                      Dashboard
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      onClick={() => logoutHandler()}
+                      className="dropdown-item"
+                      to="#"
+                    >
+                      Logout
+                    </Link>
+                  </li>
+                </ul>
+              </li>
+            ) : (
+              <li className="nav-item">
                 <Link className="nav-link active" to="/login">
                   Login
                   <span className="visually-hidden">(current)</span>
                 </Link>
-              )}
-            </li>
+              </li>
+            )}
             <li className="nav-item">
               <Link className="nav-link" to="/register">
                 Sign Up

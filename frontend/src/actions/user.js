@@ -9,6 +9,9 @@ import {
   GET_USER_FAILURE,
   GET_USER_REQUEST,
   GET_USER_SUCCESS,
+  USER_LOGOUT_FAILURE,
+  USER_LOGOUT_REQUEST,
+  USER_LOGOUT_SUCCESS,
 } from "./constants";
 
 export const userRegAction = (form) => async (dispatch) => {
@@ -81,6 +84,31 @@ export const loggedAction = () => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: GET_USER_FAILURE,
+    });
+  }
+};
+
+export const logoutAction = () => async (dispatch) => {
+  try {
+    dispatch({
+      type: USER_LOGOUT_REQUEST,
+    });
+    const options = {
+      headers: {
+        "Content-Type": `application/json`,
+      },
+    };
+    await axios.get("/api/v1/user/logout", options);
+    dispatch({
+      type: USER_LOGOUT_SUCCESS,
+    });
+  } catch (err) {
+    let error;
+    if (err?.response?.data?.message) error = err.response.data.message;
+    else error = "Some error occured";
+    dispatch({
+      type: USER_LOGOUT_FAILURE,
+      payload: error,
     });
   }
 };
