@@ -26,7 +26,10 @@ const Search = () => {
         </form>
       </div>
       <div className="col-2">
-        <button onClick={callSearch} className="btn btn-primary">
+        <button
+          onClick={callSearch}
+          className="btn btn-primary btn-lg btn-block"
+        >
           Search
         </button>
       </div>

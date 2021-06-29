@@ -4,7 +4,7 @@ const Card = (props) => {
   return (
     <div className="col">
       <div className="card bg-light mb-3 h-100">
-        <div className="card-header bg-danger">{props.info.title}</div>
+        <div className="card-header bg-warning">{props.info.title}</div>
         <div className="card-body">
           <h4 className="card-title">{props.info.company}</h4>
           <p className="card-text">{props.info.description}</p>
@@ -15,8 +15,8 @@ const Card = (props) => {
           </p>
           <p className="card-text">{props.info.location}</p>
         </div>
-        <div className="card-footer bg-dark d-grid gap-2">
-          <button type="button" className="btn btn-lg btn-primary">
+        <div className="card-footer d-grid gap-2">
+          <button type="button" className="btn btn-lg btn-primary btn-block">
             Apply
           </button>
         </div>
