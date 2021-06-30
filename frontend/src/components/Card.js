@@ -1,5 +1,7 @@
 import React from "react";
+import { useSelector } from "react-redux";
 const Card = (props) => {
+  const { user } = useSelector((state) => userReducer);
   return (
     <div className="col">
       <div className="card bg-light mb-3 h-100">
@@ -15,18 +17,20 @@ const Card = (props) => {
           <p className="card-text">{props.info.location}</p>
         </div>
         <div className="card-footer d-grid gap-2">
-          <button
-            onClick={() => props.call(props.info._id)}
-            type="button"
-            className="btn btn-lg btn-primary btn-block"
-            disabled={props.dashboard === "employee" ? true : false}
-          >
-            {props.dashboard === "employee"
-              ? "Applied"
-              : props.dashboard === "employer"
-              ? "View Applicants"
-              : "Apply"}
-          </button>
+          {user ? (
+            <button
+              onClick={() => props.call(props.info._id)}
+              type="button"
+              className="btn btn-lg btn-primary btn-block"
+              disabled={props.dashboard === "employee" ? true : false}
+            >
+              {props.dashboard === "employee"
+                ? "Applied"
+                : props.dashboard === "employer"
+                ? "View Applicants"
+                : "Apply"}
+            </button>
+          ) : null}
         </div>
       </div>
     </div>
