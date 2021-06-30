@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 const Card = (props) => {
-  const { user } = useSelector((state) => userReducer);
+  const { user } = useSelector((state) => state.userReducer);
   return (
     <div className="col">
       <div className="card bg-light mb-3 h-100">
