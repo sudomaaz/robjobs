@@ -28,7 +28,9 @@ const Card = (props) => {
                 ? "Applied"
                 : props.dashboard === "employer"
                 ? "View Applicants"
-                : "Apply"}
+                : user.role === "employee"
+                ? "Apply"
+                : null}
             </button>
           ) : (
             <button
