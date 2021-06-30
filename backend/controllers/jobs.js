@@ -65,6 +65,7 @@ export const applyJob = asyncHandler(async (req, res, next) => {
   } else {
     const data = {
       id: req.user._id,
+      email: req.user.email,
       name: req.user.name,
       experience: req.user.experience,
       resume: req.user.resume,

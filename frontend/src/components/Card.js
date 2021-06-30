@@ -30,7 +30,15 @@ const Card = (props) => {
                 ? "View Applicants"
                 : "Apply"}
             </button>
-          ) : null}
+          ) : (
+            <button
+              type="button"
+              className="btn btn-lg btn-primary btn-block"
+              disabled="true"
+            >
+              Login to Apply
+            </button>
+          )}
         </div>
       </div>
     </div>
