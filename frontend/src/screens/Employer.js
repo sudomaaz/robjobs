@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import Card from "../components/Card";
 import Spinner from "../components/Spinner";
 import { useDispatch, useSelector } from "react-redux";
 import { jobUserAction } from "../actions/job";
@@ -32,10 +33,7 @@ const Employer = () => {
           ) : users.length ? (
             <div className="row row-cols-1 row-cols-md-3 g-3 mt-3">
               {users.map((j) => (
-                <>
-                  <h1 className="text-center">{j.title}</h1>
-                  <div>{j.applied}</div>
-                </>
+                <Card key={j._id} info={j} dashboard="employer" />
               ))}
             </div>
           ) : (
