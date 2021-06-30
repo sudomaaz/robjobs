@@ -1,4 +1,5 @@
 import express from "express";
+import path from "path";
 import dotenv from "dotenv";
 import { connectDB } from "./config/db.js";
 import router from "./routes/routes.js";
@@ -28,14 +29,26 @@ app.use(fileUpload({ limits: { fileSize: 2 * 1024 * 1024 } }));
 // use pre-defined routes for every API request
 app.use("/api/v1", router);
 
-// handle unhandled routes
-app.all("*", (req, res, next) => {
-  res.status(404).json({
-    success: false,
-    message: "404 Resource not found",
-  });
-});
+// make uploads folder static
+const __dirname = path.resolve();
 
+app.use("/resumes", express.static(path.join(__dirname, "/resumes")));
+
+// set frontend build folder as a static folder
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "/frontend/build")));
+
+  app.get("*", (req, res) =>
+    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"))
+  );
+} else {
+  app.all("*", (req, res, next) => {
+    res.status(404).json({
+      success: false,
+      message: "404 Resource not found",
+    });
+  });
+}
 // apply error handle middleware
 app.use(errorMiddleware);
 

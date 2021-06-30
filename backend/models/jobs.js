@@ -66,12 +66,7 @@ const jobSchema = new mongoose.Schema(
       ref: "User",
     },
     applied: {
-      type: [
-        {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "User",
-        },
-      ],
+      type: [Object],
       select: false,
     },
   },

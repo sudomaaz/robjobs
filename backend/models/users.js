@@ -46,7 +46,6 @@ const userSchema = new mongoose.Schema(
     },
     resume: {
       type: String,
-      select: false,
     },
   },
   {

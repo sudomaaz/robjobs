@@ -19,7 +19,9 @@ export const allJobs = asyncHandler(async (req, res, next) => {
 // fetch all jobs applied by user => GET /api/v1/jobs/:uid
 export const userJobs = asyncHandler(async (req, res, next) => {
   const { uid } = req.params;
-  const jobs = await jobModel.find({ applied: uid }).sort({ updatedAt: -1 });
+  const jobs = await jobModel
+    .find({ applied: { $elemMatch: { id: mongoose.Types.ObjectId(uid) } } })
+    .sort({ updatedAt: -1 });
   res.status(200).json({
     success: true,
     message: jobs.length,
@@ -58,10 +60,16 @@ export const applyJob = asyncHandler(async (req, res, next) => {
   if (!job) {
     return next(new ErrorHandler("Job not found", 404));
   }
-  if (job.applied.includes(req.user._id)) {
+  if (job.applied.some((user) => user["name"] === req.user.name)) {
     alreadyApplied = true;
   } else {
-    job.applied.push(req.user._id);
+    const data = {
+      id: req.user._id,
+      name: req.user.name,
+      experience: req.user.experience,
+      resume: req.user.resume,
+    };
+    job.applied.push(data);
     await job.save();
   }
   const data = {
