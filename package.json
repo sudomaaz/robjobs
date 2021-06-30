@@ -4,6 +4,9 @@
   "description": "job search webapp built using mern stack",
   "main": "app.js",
   "type": "module",
+  "engines": {
+    "node": "16.4.0"
+  },
   "scripts": {
     "start": "node backend/app.js",
     "dev": "nodemon backend/app.js",
