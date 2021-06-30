@@ -14,6 +14,7 @@ const Home = () => {
   const alert = useAlert();
   const { loading, error, jobs } = useSelector((state) => state.jobReducer);
   const { added } = useSelector((state) => state.jobAddReducer);
+  const { user } = useSelector((state) => state.userReducer);
   useEffect(() => {
     dispatch(jobAction(location.search));
   }, [dispatch, location.search]);
@@ -42,7 +43,11 @@ const Home = () => {
           ) : jobs ? (
             <div className="row row-cols-1 row-cols-md-3 g-3 mt-3">
               {jobs.map((j) => (
-                <Card key={j._id} info={j} call={applyHandler} />
+                <Card
+                  key={j._id}
+                  info={j}
+                  call={user.role === "employee" ? applyHandler : null}
+                />
               ))}
             </div>
           ) : null}
