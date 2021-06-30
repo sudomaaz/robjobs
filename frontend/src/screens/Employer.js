@@ -65,6 +65,7 @@ const Employer = () => {
             <thead>
               <tr>
                 <th scope="col">Name</th>
+                <th scope="col">Email</th>
                 <th scope="col">Experience</th>
                 <th scope="col">Resume</th>
               </tr>
@@ -74,6 +75,7 @@ const Employer = () => {
                 <Table
                   key={i}
                   name={j.name}
+                  email={j.email}
                   experience={j.experience}
                   resume={j.resume}
                 />
