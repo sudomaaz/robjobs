@@ -46,7 +46,7 @@ const Home = () => {
                 <Card
                   key={j._id}
                   info={j}
-                  call={user.role === "employee" ? applyHandler : null}
+                  call={user && user.role === "employee" ? applyHandler : null}
                 />
               ))}
             </div>
