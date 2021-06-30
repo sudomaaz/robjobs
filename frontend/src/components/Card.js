@@ -19,7 +19,7 @@ const Card = (props) => {
         <div className="card-footer d-grid gap-2">
           {user ? (
             <button
-              onClick={() => props.call(props.info._id)}
+              onClick={() => props?.call(props.info._id)}
               type="button"
               className="btn btn-lg btn-primary btn-block"
               disabled={props.dashboard === "employee" ? true : false}
@@ -28,9 +28,7 @@ const Card = (props) => {
                 ? "Applied"
                 : props.dashboard === "employer"
                 ? "View Applicants"
-                : user.role === "employee"
-                ? "Apply"
-                : null}
+                : "Apply"}
             </button>
           ) : (
             <button
