@@ -19,9 +19,13 @@ const Card = (props) => {
             onClick={() => props.call(props.info._id)}
             type="button"
             className="btn btn-lg btn-primary btn-block"
-            disabled={props.dashboard}
+            disabled={props.dashboard === "employee" ? true : false}
           >
-            {props.dashboard ? "Applied" : "Apply"}
+            {props.dashboard === "employee"
+              ? "Applied"
+              : props.dashboard === "employer"
+              ? "View Applicants"
+              : "Apply"}
           </button>
         </div>
       </div>

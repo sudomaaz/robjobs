@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { loggedAction } from "./actions/user";
 import Employee from "./screens/Employee";
+import Employer from "./screens/Employer";
 import NewJob from "./screens/NewJob";
 function App() {
   const dispatch = useDispatch();
@@ -27,6 +28,9 @@ function App() {
         </Route>
         <Route exact path="/employee">
           <Employee />
+        </Route>
+        <Route exact path="/employer">
+          <Employer />
         </Route>
         <Route exact path="/newjob">
           <NewJob />

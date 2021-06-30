@@ -27,8 +27,22 @@ export const userJobs = asyncHandler(async (req, res, next) => {
   });
 });
 
+// fetch all users who applied to a job by recruiter id => GET /api/v1/jobs/users/:id
+export const jobUsers = asyncHandler(async (req, res, next) => {
+  const job = await jobModel.find({ user: req.params.id }).select("+applied");
+  if (!job) {
+    return next(new ErrorHandler("Job not found", 404));
+  }
+  res.status(200).json({
+    success: true,
+    message: "users found",
+    data: job,
+  });
+});
+
 // Create a new Job => POST /api/v1/jobs
 export const newJob = asyncHandler(async (req, res, next) => {
+  req.body.user = req.user._id;
   const job = await jobModel.create(req.body);
   res.status(201).json({
     success: true,

@@ -1,7 +1,12 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { jobReducer, applyReducer, jobAddReducer } from "./reducers/jobs";
+import {
+  jobReducer,
+  applyReducer,
+  jobAddReducer,
+  jobUserReducer,
+} from "./reducers/jobs";
 import { userReducer, userJobReducer } from "./reducers/users";
 
 const reducer = combineReducers({
@@ -10,6 +15,7 @@ const reducer = combineReducers({
   userReducer,
   userJobReducer,
   jobAddReducer,
+  jobUserReducer,
 });
 
 const initialState = {};

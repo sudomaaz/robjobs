@@ -11,6 +11,9 @@ import {
   JOB_ADD_REQUEST,
   JOB_ADD_SUCCESS,
   JOB_ADD_CLEAR,
+  JOB_USER_FAILURE,
+  JOB_USER_REQUEST,
+  JOB_USER_SUCCESS,
 } from "./constants";
 
 export const jobAction = (searchQuery) => async (dispatch) => {
@@ -86,6 +89,32 @@ export const jobAddAction = (jobData) => async (dispatch) => {
     else error = "Some error occured";
     dispatch({
       type: JOB_ADD_FAILURE,
+      payload: error,
+    });
+  }
+};
+
+export const jobUserAction = (id) => async (dispatch) => {
+  try {
+    dispatch({
+      type: JOB_USER_REQUEST,
+    });
+    const options = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const { data } = await axios.get("/api/v1/jobs/users/" + id, options);
+    dispatch({
+      type: JOB_USER_SUCCESS,
+      payload: data.data,
+    });
+  } catch (err) {
+    let error;
+    if (err?.response?.data?.message) error = err.response.data.message;
+    else error = "Some error occured";
+    dispatch({
+      type: JOB_USER_FAILURE,
       payload: error,
     });
   }

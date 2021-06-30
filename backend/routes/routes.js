@@ -1,5 +1,11 @@
 import express from "express";
-import { allJobs, userJobs, newJob, applyJob } from "../controllers/jobs.js";
+import {
+  allJobs,
+  userJobs,
+  newJob,
+  applyJob,
+  jobUsers,
+} from "../controllers/jobs.js";
 
 import {
   newUser,
@@ -19,9 +25,15 @@ router
   .get(allJobs)
   .post(authMiddleware, roleMiddleware("employer"), newJob);
 
-// route to display user jobs
+// route to display users who applied to a recruiter
+router
+  .route("/jobs/users/:id")
+  .get(authMiddleware, roleMiddleware("employer"), jobUsers);
 
-router.route("/jobs/:uid").get(userJobs);
+// route to display jobs applied by a user
+router
+  .route("/jobs/:uid")
+  .get(authMiddleware, roleMiddleware("employee"), userJobs);
 
 //Route to apply to a specific job by its id
 router
